@@ -48,24 +48,27 @@ class Atom:
 
         #--- read Collision Excitation
         nL, nTemp = self.paramCE
-        self.CE_Te = np.empty(nTemp, dtype=np.double)   #: Temperature mesh [:math:`K`]
+        self.CE_Te_table = np.empty(nTemp, dtype=np.double)   #: Temperature mesh [:math:`K`]
         self.CE_table = np.empty((nL,nTemp), dtype=np.double)
         dtype  = np.dtype([
                           ('idxI',np.uint8),      #: level index, the Level index of lower level
                           ('idxJ',np.uint8),      #: level index, the Level index of lower level
                           ('f1',np.uint8),
                           ('f2',np.uint8),
+                          ('gi',np.uint8),        #: statistical weight of lower level
+                          ('gj',np.uint8),        #: statistical weight of upper level
+                          ('dEij',np.double)      #: excitation energy, [:math:`erg`]
                           ])
         self.CE_coe = np.recarray(nL, dtype=dtype)
         self.CE_type = []
         rs = AIO.read_CE_info(_rs=rs, _lns=fLines, _idxI=self.CE_coe.idxI[:], _idxJ=self.CE_coe.idxJ[:],
-                        _Te=self.CE_Te[:], _table=self.CE_table[:,:], _CE_type=self.CE_type,
+                        _Te=self.CE_Te_table[:], _table=self.CE_table[:,:], _CE_type=self.CE_type,
                         _f1=self.CE_coe.f1[:], _f2=self.CE_coe.f2[:])
 
-
-
-
-
+        for k in range(nL):
+            self.CE_coe.gi[k] = self.Level.g[self.CE_coe.idxI[k]]
+            self.CE_coe.gj[k] = self.Level.g[self.CE_coe.idxJ[k]]
+            self.CE_coe.dEij[k] = self.Level.erg[self.CE_coe.idxJ[k]] - self.Level.erg[self.CE_coe.idxI[k]]
 
 
 if __name__ == "__main__":
