@@ -43,7 +43,7 @@ def setMatrixC(_Cmat, _Cji, _Cij, _idxI, _idxJ, _ne):
 
     """
 
-    _n_row, _n_col = Cmat.shape
+    _n_row, _n_col = _Cmat.shape
     assert _n_row == _n_col, '_Cmat should be a squared matrix.'
 
     _nTran = _Cji.size
@@ -107,7 +107,7 @@ def setMatrixR(_Rmat, _Rji_spon, _Rji_stim, _Rij, _idxI, _idxJ):
 def solveSE(_Rmat, _Cmat):
 
     _nLevel = _Rmat.shape[0]
-    _A = Cmat[:,:] + Rmat[:,:]
+    _A = _Cmat[:,:] + _Rmat[:,:]
     _b = np.zeros(_nLevel, dtype=np.double)
 
     #-------------------------------------------------------------
@@ -132,6 +132,7 @@ if __name__ == "__main__":
     import AtomCls
     import LTELib
     import ColExcite
+    import OpticallyThin
 
     file = "/Users/liu/kouui/workspace/statistical_equilibrium/atom/C_III_Be_like.txt"
     atom = AtomCls.Atom(file)
@@ -168,5 +169,11 @@ if __name__ == "__main__":
     setMatrixR(_Rmat=Rmat[:,:], _Rji_spon=atom.Line.AJI[:],
         _Rji_stim=Rji_stim[:], _Rij=Rij, _idxI=atom.Line.idxI[:], _idxJ=atom.Line.idxJ[:])
 
-    nArr = solveSE(_Rmat=Rmat[:,:], _Cmat=Cmat[:,:])
-    
+    n_SE = solveSE(_Rmat=Rmat[:,:], _Cmat=Cmat[:,:])
+
+    #-- compute optically thin relative flux
+    nj_SE = np.empty(nTran, np.double)
+    for k in range(nTran):
+        nj_SE[k] = n_SE[atom.CE_coe.idxJ[k]]
+
+    rel_flux = OpticallyThin.get_relative_flux(_AJI=atom.Line.AJI[:], _f0=atom.Line.f0[:], _nj=nj_SE[:])
