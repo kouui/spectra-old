@@ -6,7 +6,7 @@ Element     C
 nLevel      10
 nLine       45
 #
-#           nTemperature    nTransition
+#           nTansition    nTemperature
 CEparameter 45              9
 END
 #--------------------------------------------------------------------------------------------------
