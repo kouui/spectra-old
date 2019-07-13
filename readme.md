@@ -1,5 +1,3 @@
----
-
 ### Reproducing the result
 
 if you only want to have a try and reproduce the simulation result in `*.ipynb` files instead of making some development, go to [https://gke.mybinder.org/](https://gke.mybinder.org/)
@@ -9,5 +7,3 @@ if you only want to have a try and reproduce the simulation result in `*.ipynb` 
 3. click `launch` and wait ~1 minute before the Docker image being built.
 
 ![./figures](./figures/binder_example.png)
-
----
