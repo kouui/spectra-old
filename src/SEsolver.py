@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def setMatrixC(_Cmat, _Cji, _Cij, _idxI, _idxJ, _ne):
+def setMatrixC(_Cmat, _Cji, _Cij, _idxI, _idxJ, _Ne):
     r"""
     Compute the collisional rate matrix.
 
@@ -23,7 +23,7 @@ def setMatrixC(_Cmat, _Cji, _Cij, _idxI, _idxJ, _ne):
     _idxJ : numpy.1darray of np.uint16
         level index of upper level j, [-]
 
-    _ne: np.double
+    _Ne: np.double
         electron density, [:math:`cm^{-3}`]
 
     Notes
@@ -49,8 +49,8 @@ def setMatrixC(_Cmat, _Cji, _Cij, _idxI, _idxJ, _ne):
     _nTran = _Cji.size
     for k in range(_nTran):
         i, j = _idxI[k], _idxJ[k]
-        _Cmat[i,j] += _ne * _Cji[k]
-        _Cmat[j,i] += _ne * _Cij[k]
+        _Cmat[i,j] += _Ne * _Cji[k]
+        _Cmat[j,i] += _Ne * _Cij[k]
 
 
 def setMatrixR(_Rmat, _Rji_spon, _Rji_stim, _Rij, _idxI, _idxJ):
@@ -129,10 +129,10 @@ def solveSE(_Rmat, _Cmat):
 
 if __name__ == "__main__":
 
-    import AtomCls
-    import LTELib
-    import ColExcite
-    import OpticallyThin
+    from . import AtomCls
+    from . import LTELib
+    from . import ColExcite
+    from . import OpticallyThin
 
     file = "/Users/liu/kouui/workspace/spectra/atom/C_III_Be_like.txt"
     atom = AtomCls.Atom(file)

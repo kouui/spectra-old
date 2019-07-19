@@ -1,7 +1,7 @@
 
 import numpy as np
-import Constants as Cst
-import AtomIO as AIO
+from . import Constants as Cst
+from . import AtomIO as AIO
 
 class Atom:
 

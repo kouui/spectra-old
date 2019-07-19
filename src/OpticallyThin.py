@@ -1,5 +1,5 @@
 import numpy as np
-import Constants as Cst
+from . import Constants as Cst
 
 def get_relative_flux(_AJI, _f0, _nj):
 
