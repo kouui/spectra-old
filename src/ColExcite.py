@@ -35,7 +35,7 @@ if __name__ == "__main__":
     import AtomCls
     import LTELib
 
-    file = "/Users/liu/kouui/workspace/statistical_equilibrium/atom/C_III_Be_like.txt"
+    file = "/Users/liu/kouui/workspace/spectra/atom/C_III_Be_like.txt"
     atom = AtomCls.Atom(file)
     Te = 2E+04
     ne = 1E+10

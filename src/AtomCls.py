@@ -6,12 +6,30 @@ import AtomIO as AIO
 class Atom:
 
     def __init__(self, filepath):
+        r"""
+        initial method of class Atom
+        """
 
         self.filepath = filepath
         self.__read_data_file(filepath)
 
 
     def __read_data_file(self, filepath):
+        r"""
+        restore
+
+            self.Level
+            self.Level_info
+            self.Level_info_table
+            self.Line
+            self.Line_idx_table
+            self.CE_Te_table
+            self.CE_table
+            self.CE_type
+            self.CE_coe
+
+        from the filepath.
+        """
 
         with open(filepath, 'r') as file:
             fLines = file.readlines()
@@ -32,6 +50,14 @@ class Atom:
                             _erg=self.Level.erg[:], _g=self.Level.g[:], _stage=self.Level.stage[:])
         self.Level.erg[:] *= Cst.eV2erg_
 
+        #--- make tuple of tuple (configuration, term, J)
+        self.Level_info_table = []
+        for k in range(self.nLevel):
+            self.Level_info_table.append((self.Level_info["configuration"][k],
+                                          self.Level_info["term"][k],
+                                          self.Level_info["J"][k]))
+        self.Level_info_table = tuple(self.Level_info_table)
+
         #--- read line info
         dtype = np.dtype([('idxI',np.uint16),           #: level index, the Level index of lower level
                            ('idxJ',np.uint16),          #: level index, the Level index of lower level
@@ -45,6 +71,12 @@ class Atom:
                             _Aji=self.Line.AJI[:], _w0_AA=self.Line.w0_AA[:])
         self.Line.w0[:] = self.Line.w0_AA[:] * 1E-8
         self.Line.f0[:] = Cst.c_ / self.Line.w0[:]
+
+        #--- make tuple of tuple (self.Line.idxI, self.Line.idxJ)
+        self.Line_idx_table = []
+        for k in range(self.nLine):
+            self.Line_idx_table.append( (self.Line.idxI[k], self.Line.idxJ[k]) )
+        self.Line_idx_table = tuple(self.Line_idx_table)
 
         #--- read Collision Excitation
         nL, nTemp = self.paramCE
@@ -70,8 +102,59 @@ class Atom:
             self.CE_coe.gj[k] = self.Level.g[self.CE_coe.idxJ[k]]
             self.CE_coe.dEij[k] = self.Level.erg[self.CE_coe.idxJ[k]] - self.Level.erg[self.CE_coe.idxI[k]]
 
+    def line_idx_to_conf(self, line_idx):
+        r"""
+        given the index of a line transition,
+        returnthe  configuration and term information for lower and upper levels, respectively.
+        """
+        idxI = self.Line.idxI[line_idx]
+        idxJ = self.Line.idxJ[line_idx]
+
+        conf = {
+            "lower" : "",
+            "upper" : ""
+        }
+        for key, idx in zip( ("lower","upper"), (idxI, idxJ) ):
+            conf[key] = (self.Level_info["configuration"][idx],
+                         self.Level_info["term"][idx],
+                         self.Level_info["J"][idx])
+
+        return conf
+
+    def conf_to_level_idx(self, conf, term, J):
+        r"""
+        given the configuration, term and J of a specific level,
+        return the index of that level.
+        """
+
+        return self.Level_info_table.index( (conf, term, J) )
+
+    def idxIJ_to_line_idx(self, idxI, idxJ):
+        r"""
+        given the index of lower and upper levels, respectively,
+        return the index of that line.
+        """
+
+        return self.Line_idx_table.index( (idxI, idxJ) )
+
+    def conf_to_line_idx(self, conf_lower, conf_upper):
+        r"""
+        given the configuration tuple of lower and upper level, respectively,
+        return the index of that transition
+        """
+        idxI = self.Level_info_table.index( conf_lower )
+        idxJ = self.Level_info_table.index( conf_upper )
+
+        return self.idxIJ_to_line_idx(idxI, idxJ)
+
+
+
 
 if __name__ == "__main__":
 
-    file = "/Users/liu/kouui/workspace/statistical_equilibrium/atom/C_III_Be_like.txt"
+    file = "/Users/liu/kouui/workspace/spectra/atom/C_III_Be_like.txt"
     atom = Atom(file)
+    #--- assert that the index - configuration search method works well
+    idx_line = 3
+    conf_line = atom.line_idx_to_configuration(idx_line)
+    assert idx_line == atom.conf_to_line_idx(conf_lower=conf_line["lower"], conf_upper=conf_line["upper"])
