@@ -12,7 +12,7 @@ if you only want to have a try and reproduce the simulation result in `*.ipynb` 
 
 <figure>
 <a href="href"><img alt="alt" src="./figures/binder_example.png"></a>
-<figcaption style="text-align:center;”>Fig 1, steps 1,2,3</figcaption>
+<figcaption style="text-align:center”>Fig 1, steps 1,2,3</figcaption>
 </figure>
 
 <figure>
