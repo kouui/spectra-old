@@ -10,6 +10,17 @@ if you only want to have a try and reproduce the simulation result in `*.ipynb` 
 6. if you want to try your own *.ipynb file, just click `upload` to upload your file to the server.
 7. at last, do not forget to `Save and Checkpoint` and then `Download As` `Notebook (.ipynb)` to your local storage.
 
-[![alt](./figures/binder_example.png)](href "Fig 1, steps 1,2,3")
-[![alt](./figures/binder_example1.png)](href "Fig 2, steps 4,5,6”)
-[![alt](./figures/binder_example2.png)](href "Fig 3, steps 7”)
+<figure>
+<a href="href"><img alt="alt" src="./figures/binder_example.png"></a>
+<figcaption>Fig 1, steps 1,2,3</figcaption>
+</figure>
+
+<figure>
+<a href="href"><img alt="alt" src="./figures/binder_example1.png"></a>
+<figcaption>Fig 2, steps 4,5,6</figcaption>
+</figure>
+
+<figure>
+<a href="href"><img alt="alt" src="./figures/binder_example2.png"></a>
+<figcaption>Fig 3, steps 7</figcaption>
+</figure>
