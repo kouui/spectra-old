@@ -7,11 +7,14 @@ Modification History:
 """
 
 ################################################################################
-# physcis constants
+# mathematical constants
 ################################################################################
 
 pi_ = 3.141592653589793                 #: mathematical constant pi, [-]
-sqrtPi_ = 1.7724538509055159            #: square root of pi, [-]
+
+################################################################################
+# constants for unit conversion
+################################################################################
 
 eV2erg_ = 1.60217662 * 1.E-12           #: unit conversion from eV to erg, [:math:`erg/eV`]
 J2erg_ = 1.E+7                          #: unit conversion from J to erg, [:math:`erg/J`]
@@ -19,6 +22,10 @@ m2cm_ = 1.E+2                           #: unit conversion from m to cm, [:math:
 micro2AA_ = 1.E4                        #: unit conversion from micro to angstrom, [:math:`A / \mu m`]
 K2eV_ = 8.6173324 * 1.E-5               #: compute electron temperature in unit eV, [:math:`eV / K`]
 eV2AA_div_ = 1.23984176 * 1E+4          #: unit conversion from eV to angstrom ('div': ex. eV2AA_div_ / 2[eV] = 6199.2088[AA]), [:math:`eV \cdot A`]
+
+################################################################################
+# physcis constants
+################################################################################
 
 c_ = 2.9979246  * 1.E+10                #: speed of light, [:math:`cm \cdot s^{-1}`]
 h_ = 6.62606885 * 1.E-27                #: Planck constant, [:math:`erg \cdot s`]
@@ -35,6 +42,16 @@ R_sun_ = 6.957 * 1.E+10                 #: Solar radius, [:math:`cm`]
 # constants for the convenience of computation
 ################################################################################
 
+sqrtPi_ = 1.7724538509055159            #: square root of pi, [-]
+
 saha_ = 2 * (2*pi_*me_*k_/h_/h_)**(1.5)
 """a constant factor in Saha's equation, :math:`2(2 \pi m_e k /h^2)^{3/2}`, [:math:`g^{3/2} \cdot erg^{-3/2} \cdot k^{-3/2} \cdot s^{-3}`]
+"""
+
+################################################################################
+# constants for notations
+################################################################################
+L_s2i = { "S" : 0, "P" : 1, "D" : 2, "F" : 3, "G" : 4, "H" : 5, "I" : 6 }
+L_i2s = { 0 : "S", 1 : "P", 2 : "D", 3 : "F", 4 : "G", 5 : "H", 6 : "I" }
+"""a hash dictionary mapping symbolic quantum number L to its integer value
 """
