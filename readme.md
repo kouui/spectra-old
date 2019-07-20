@@ -13,8 +13,12 @@ if you only want to have a try and reproduce the simulation result in `*.ipynb` 
 
 | ![img](./figures/binder_example.png) |
 |:---:|
-| *caption* |
+| Fig 1. steps 1,2,3 |
 
-![img](./figures/binder_example1.png)
+| ![img](./figures/binder_example1.png) |
+|:---:|
+| Fig 2. steps 4,5,6 |
 
-![img](./figures/binder_example2.png)
+| ![img](./figures/binder_example2.png) |
+|:---:|
+| Fig 3. steps 7 |
