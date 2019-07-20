@@ -156,12 +156,3 @@ def get_LTE_ratio(_erg, _g, _stage, _Te, _Ne):
     _nRatio[:] /= _nRatio[:].sum()
 
     return _nRatio
-
-if __name__ == "__main__":
-
-    import AtomCls
-
-    file = "/Users/liu/kouui/workspace/spectra/atom/C_III_Be_like.txt"
-    atom = AtomCls.Atom(file)
-    nRatio = get_LTE_ratio(atom.Level.erg[:], atom.Level.g[:], atom.Level.stage[:], 2E+04, 1E+10)
-    #print(nRatio)
