@@ -10,17 +10,11 @@ if you only want to have a try and reproduce the simulation result in `*.ipynb` 
 6. if you want to try your own *.ipynb file, just click `upload` to upload your file to the server.
 7. at last, do not forget to `Save and Checkpoint` and then `Download As` `Notebook (.ipynb)` to your local storage.
 
-—
 
-![img](./figures/binder_example.png)
-
-—
+| ![img](./figures/binder_example.png) |
+|:---:|
+| *caption* |
 
 ![img](./figures/binder_example1.png)
 
-—
-
 ![img](./figures/binder_example2.png)
-
-—
-
