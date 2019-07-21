@@ -36,7 +36,7 @@ if __name__ == "__main__":
     atom = AtomCls.Atom(filename)
     gro = Grotrian.Grotrian(_atom=atom, _conf_duplicate="1s2.")
     gro.make_fig(_figsize=(10,6), _f=50)
-    
+
     line_plot = (
         (0, 4, "629.7", 0.3, 0.5),
         (0, 2, "1218.3", 0.7, 0.1),
@@ -54,5 +54,5 @@ if __name__ == "__main__":
         _cfj1 = atom.Level_info_table[i]
         _cfj2 = atom.Level_info_table[j]
         gro.connect_line(_cfj1=_cfj1, _cfj2=_cfj2, _r1=_r1, _r2=_r2, _c="black", _text=wl, _tsize=7, _r=0.4)
-    #gro.show_fig()
-    gro.save_fig("../grotrian_diagram/" + filename.split('/')[-1].replace(".txt",".png"))
+    gro.show_fig()
+    #gro.save_fig("../grotrian_diagram/" + filename.split('/')[-1].replace(".txt",".png"))

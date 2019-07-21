@@ -3,7 +3,7 @@ from collections import Counter
 from .. import Constants as Cst
 import math
 
-def prepare_dict(_atom, _conf_duplicate):
+def _prepare_dict(_atom, _conf_duplicate):
     r"""
     separate singlet and multiplet
 
@@ -150,7 +150,7 @@ class Grotrian:
         #---------------------------------------------------------------------
         # prepare structures for plotting
         #---------------------------------------------------------------------
-        singlet, multiplet, Lset = prepare_dict(_atom=_atom, _conf_duplicate=_conf_duplicate)
+        singlet, multiplet, Lset = _prepare_dict(_atom=_atom, _conf_duplicate=_conf_duplicate)
         self.singlet = singlet
         self.multiplet = multiplet
         self.Lset = Lset
