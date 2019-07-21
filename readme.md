@@ -1,4 +1,3 @@
----
 
 ## Reproducing the result
 
