@@ -54,3 +54,9 @@ $ python nist_to_level_line.py
 |:---:|
 | ![img](./figures/nist_example3.png) |
 | Fig 5. |
+
+---
+
+## TODO
+
+- [ ] convert the (I,J) indexing of AJI and CE to Level indexing : (conf_term_J(lower), conf_term_J(upper))
