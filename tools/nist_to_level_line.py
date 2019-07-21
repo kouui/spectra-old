@@ -199,7 +199,7 @@ def format_line_info(result_line):
     # output string
     _s_out = "\t i\t\t j\t\tWavelength[AA]\t\tAji[s^-1]\n"
     for _i in range(_length):
-        _s_out += "\t{0:2d}\t\t{1:2d}\t\t{2:1.8e}\t\t{3:1.4e}\n".format(
+        _s_out += "\t{0:<2d}\t\t{1:<2d}\t\t{2:1.8e}\t\t{3:1.4e}\n".format(
         result_line["i"][_i], result_line["j"][_i], result_line["Wavelength[AA]"][_i], result_line["Aji[s^-1]"][_i]
         )
     _s_out += "\n"
@@ -286,5 +286,7 @@ if __name__ == "__main__":
     #path = "/Users/liu/kouui/workspace/spectra/atom/nist_ASCII/C_III_Be_like/"
     #path = "/Users/liu/kouui/workspace/spectra/atom/nist_ASCII/O_V_Be_like/"
 
-
+    terms = ["3s2 1S", "3s.3p 3P", "3s.3p 1P", "1s2.2p2 3P", "3p2 1D", "3p2 3P",
+            "3s.3d 3D", "3s.4s 3S", "3p2 1S", "3s.4s 1S"]
+    path = "/Users/liu/kouui/workspace/spectra/atom/nist_ASCII/Si_III_Mg_like/"
     make_result_file(t_levels=terms, t_path=path)

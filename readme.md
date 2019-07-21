@@ -44,7 +44,7 @@ $ cd /Path_to/spectra/tools
 $ python nist_to_level_line.py
 ```
 8. step 7. will generate file `./atom/nist_ASCII/Si_III_Mg_like/Si_III_Mg_like.Result`
-9. After all, copy the text in `./atom/nist_ASCII/Si_III_Mg_like/Si_III_Mg_like.Result` into `./atom/Si_III_Mg_like.txt`
+9. After all, copy the text in `./atom/nist_ASCII/Si_III_Mg_like/Si_III_Mg_like.Result` into `./atom/Si_III_Mg_like.txt`. Be aware of the format.
 
 | ![img](./figures/nist_example1.png) |
 |:---:|

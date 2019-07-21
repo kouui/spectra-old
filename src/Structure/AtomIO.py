@@ -131,9 +131,9 @@ def read_CE_info(_rs, _lns, _idxI, _idxJ, _Te, _table, _CE_type, _f1, _f2):
         _idxI[_idx] = int( _words[0] )
         _idxJ[_idx] = int( _words[1] )
         _CE_type.append( _words[2] )
-        _table[_idx,:] = [float(_v.strip()) for _v in _words[3:12]]
-        _f1[_idx] = int( _words[12] )
-        _f2[_idx] = int( _words[13] )
+        _table[_idx,:] = [float(_v.strip()) for _v in _words[3:-2]]
+        _f1[_idx] = int( _words[-2] )
+        _f2[_idx] = int( _words[-1] )
 
 
         _idx += 1
