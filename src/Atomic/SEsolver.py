@@ -9,13 +9,13 @@ def setMatrixC(_Cmat, _Cji, _Cij, _idxI, _idxJ, _Ne):
     ----------
 
     _Cmat : numpy.2darray of np.double
-        collisional rate matrix, a 2D Array to store computed results.
+        collisional rate matrix, a 2D Array to store computed results, [:math:`s^{-1}`]
 
     _Cji : numpy.1darray of np.double
-        downward collisional transition rate, [:math:`s^{-1} \cdot cm^{-3}`]
+        downward collisional transition rate, [:math:`s^{-1} \cdot cm^{3}`]
 
     _Cij : numpy.1darray of np.double
-        upward collisional transition rate, [:math:`s^{-1} \cdot cm^{-3}`]
+        upward collisional transition rate, [:math:`s^{-1} \cdot cm^{3}`]
 
     _idxI : numpy.1darray of np.uint16
         level index of lower level i, [-]
@@ -30,7 +30,7 @@ def setMatrixC(_Cmat, _Cji, _Cij, _idxI, _idxJ, _Ne):
     -----
     Refer to [1]_ Equation(9.80).
 
-    .. math:: \sum_{j \neq i} n_j (R_{ji}+C_{ji}) - n_i \sum_{j \neq i}(R_{ij}+C_{ij}) = 0
+    .. math:: \sum_{j \neq i} n_j (R_{ji}+n_{e} C_{ji}) - n_i \sum_{j \neq i}(R_{ij}+n_{e} C_{ij}) = 0
 
 
     References
@@ -61,16 +61,16 @@ def setMatrixR(_Rmat, _Rji_spon, _Rji_stim, _Rij, _idxI, _idxJ):
     ----------
 
     _Rmat : numpy.2darray of np.double
-        radiative rate matrix, a 2D Array to store computed results.
+        radiative rate matrix, a 2D Array to store computed results, [:math:`s^{-1}`]
 
     _Rji_spon : numpy.1darray of np.double
-        spontaneous radiative transition rate, [:math:`s^{-1} \cdot cm^{-3}`]
+        spontaneous radiative transition rate, [:math:`s^{-1}`]
 
     _Rji_stim : numpy.1darray of np.double
-        spontaneous radiative transition rate, [:math:`s^{-1} \cdot cm^{-3}`]
+        spontaneous radiative transition rate, [:math:`s^{-1}`]
 
     _Rij : numpy.1darray of np.double
-        upward radiative transition rate, [:math:`s^{-1} \cdot cm^{-3}`]
+        upward radiative transition rate, [:math:`s^{-1}`]
 
     _idxI : numpy.1darray of np.uint16
         level index of lower level i, [-]
@@ -105,6 +105,25 @@ def setMatrixR(_Rmat, _Rji_spon, _Rji_stim, _Rij, _idxI, _idxJ):
 
 
 def solveSE(_Rmat, _Cmat):
+    r"""
+    solve the linear equation system of statistical equilibrium.
+
+    Parameters
+    ----------
+
+    _Rmat : np.double, np.array, (nLevel,nLevel)
+        radiative transition rate matrix, [:math:`s^{-1}`]
+
+    _Cmat : np.double, np.array, (nLevel,nLevel)
+        collisional transition rate matrix, [:math:`s^{-1}`]
+
+    Returns
+    -------
+
+    _nArr : np.double, np.array, (nLevel,)
+        normalized level population. [:math:`cm^{-3}`]
+
+    """
 
     _nLevel = _Rmat.shape[0]
     _A = _Cmat[:,:] + _Rmat[:,:]
