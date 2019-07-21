@@ -28,11 +28,29 @@ if you only want to have a try and reproduce the simulation result in `*.ipynb` 
 
 ## Generating format we need using NIST Level/Line information
 
+First download NIST Level/Line information to `./atom/nist_ASCII/` folder.
+
+take "Si III Mg like" atomic model for example:
+
+1. open https://physics.nist.gov/PhysRefData/ASD/levels_form.html
+2. modified the corresponding parameters in red rectangular shown in Fig 4.
+3. copy the whole text to `./atom/nist_ASCII/Si_III_Mg_like/Si_III_Mg_like.Level`
+4. open https://physics.nist.gov/PhysRefData/ASD/lines_form.html and click `show Adcanced Settings`
+5. modified the corresponding parameters in red rectangular shown in Fig 5.
+6. copy the whole text to `./atom/nist_ASCII/Si_III_Mg_like/Si_III_Mg_like.Line`
+7. modify `terms` and `path` variables in python script `./tools/nist_to_level_line.py`, and then execute it
+```
+$ cd /Path_to/spectra/tools
+$ python nist_to_level_line.py
+```
+8. step 7. will generate file `./atom/nist_ASCII/Si_III_Mg_like/Si_III_Mg_like.Result`
+9. After all, copy the text in `./atom/nist_ASCII/Si_III_Mg_like/Si_III_Mg_like.Result` into `./atom/Si_III_Mg_like.txt`
+
 | ![img](./figures/nist_example1.png) |
 |:---:|
-| Fig 4. steps ... |
+| Fig 4. |
 
 | ![img](./figures/nist_example2.png) |
 |:---:|
 | ![img](./figures/nist_example3.png) |
-| Fig 5. steps ... |
+| Fig 5. |

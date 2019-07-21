@@ -282,7 +282,9 @@ if __name__ == "__main__":
     #       Level : Configuration   Term    J   g   Level(eV)
     #       Line :  i   j   Aji[s^-1]   Wavelength[AA]
 
-    levels = ["1s2.2s2 1S", "1s2.2s.2p 3P", "1s2.2s.2p 1P", "1s2.2p2 3P", "1s2.2p2 1D", "1s2.2p2 1S"]
+    #terms = ["1s2.2s2 1S", "1s2.2s.2p 3P", "1s2.2s.2p 1P", "1s2.2p2 3P", "1s2.2p2 1D", "1s2.2p2 1S"]
     #path = "/Users/liu/kouui/workspace/spectra/atom/nist_ASCII/C_III_Be_like/"
-    path = "/Users/liu/kouui/workspace/spectra/atom/nist_ASCII/O_V_Be_like/"
-    make_result_file(t_levels=levels, t_path=path)
+    #path = "/Users/liu/kouui/workspace/spectra/atom/nist_ASCII/O_V_Be_like/"
+
+
+    make_result_file(t_levels=terms, t_path=path)
