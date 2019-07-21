@@ -4,7 +4,8 @@ if __name__ == "__main__":
     import sys
     sys.path.append("..")
 
-    from src import AtomCls, LTELib
+    from src.Structure import AtomCls
+    from src.Atomic import LTELib
 
     file = "/Users/liu/kouui/workspace/spectra/atom/C_III_Be_like.txt"
     atom = AtomCls.Atom(file)

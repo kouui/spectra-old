@@ -1,6 +1,6 @@
 import numpy as np
-from . import Constants as Cst
-from . import AtomCls
+from .. import Constants as Cst
+from ..Structure import AtomCls
 
 def Boltzmann_distribution(_gi, _gj, _Eji, _Te):
     r"""

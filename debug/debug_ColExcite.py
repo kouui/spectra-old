@@ -5,7 +5,8 @@ if __name__ == "__main__":
     sys.path.append("..")
 
     import numpy as np
-    from src import AtomCls, LTELib, ColExcite
+    from src.Structure import AtomCls
+    from src.Atomic import LTELib, ColExcite
 
     file = "/Users/liu/kouui/workspace/spectra/atom/C_III_Be_like.txt"
     atom = AtomCls.Atom(file)

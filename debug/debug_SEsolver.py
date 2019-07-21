@@ -5,7 +5,9 @@ if __name__ == "__main__":
     sys.path.append("..")
 
     import numpy as np
-    from src import AtomCls, LTELib, ColExcite, SEsolver, OpticallyThin
+    from src.Structure import AtomCls
+    from src.Atomic import LTELib, ColExcite, SEsolver
+    from src.RadiativeTransfer import Thin
 
     file = "/Users/liu/kouui/workspace/spectra/atom/C_III_Be_like.txt"
     atom = AtomCls.Atom(file)
@@ -49,4 +51,4 @@ if __name__ == "__main__":
     for k in range(nTran):
         nj_SE[k] = n_SE[atom.CE_coe.idxJ[k]]
 
-    rel_flux = OpticallyThin.get_relative_flux(_AJI=atom.Line.AJI[:], _f0=atom.Line.f0[:], _nj=nj_SE[:])
+    rel_flux = Thin.get_relative_flux(_AJI=atom.Line.AJI[:], _f0=atom.Line.f0[:], _nj=nj_SE[:])

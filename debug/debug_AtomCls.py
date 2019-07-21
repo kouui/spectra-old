@@ -4,7 +4,7 @@ if __name__ == "__main__":
     import sys
     sys.path.append("..")
 
-    from src import AtomCls
+    from src.Structure import AtomCls
 
     file = "/Users/liu/kouui/workspace/spectra/atom/C_III_Be_like.txt"
     atom = AtomCls.Atom(file)

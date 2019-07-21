@@ -1,5 +1,5 @@
 import numpy as np
-from . import Constants as Cst
+from .. import Constants as Cst
 
 def interpolate_CE_fac(_table, _Te, _Te_table, _f1, _f2):
 

@@ -5,8 +5,8 @@ if __name__ == "__main__":
     import sys
     sys.path.append("..")
 
-    from src import AtomCls
-    from src.visual import Grotrian
+    from src.Structure import AtomCls
+    from src.Visual import Grotrian
     #-------------------------------------------------------------------------
     # C III Be like
     #-------------------------------------------------------------------------

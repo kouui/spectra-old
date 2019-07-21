@@ -1,6 +1,6 @@
 
 import numpy as np
-from . import Constants as Cst
+from .. import Constants as Cst
 from . import AtomIO as AIO
 
 class Atom:
