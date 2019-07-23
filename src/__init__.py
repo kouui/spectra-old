@@ -1,3 +1,3 @@
 
 
-from . import Visual, Atomic, RadiativeTransfer, Structure
+from . import visual, Atomic, RadiativeTransfer, Structure
