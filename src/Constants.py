@@ -51,7 +51,20 @@ saha_ = 2 * (2*pi_*me_*k_/h_/h_)**(1.5)
 ################################################################################
 # constants for notations
 ################################################################################
+
 L_s2i = { "S" : 0, "P" : 1, "D" : 2, "F" : 3, "G" : 4, "H" : 5, "I" : 6 }
 L_i2s = { 0 : "S", 1 : "P", 2 : "D", 3 : "F", 4 : "G", 5 : "H", 6 : "I" }
 """a hash dictionary mapping symbolic quantum number L to its integer value
+"""
+
+################################################################################
+# constants for code configuration
+################################################################################
+isJIT = True
+"""whether to turn on the JIT compilation in all *.py files,
+since sphinx does no understand numba thus can not generate documentation for numba jitted functions.
+
+set to
+    True  : before simulation
+    False : before generating documentation using sphinx
 """
