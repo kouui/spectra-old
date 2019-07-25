@@ -65,6 +65,6 @@ isJIT = True
 since sphinx does no understand numba thus can not generate documentation for numba jitted functions.
 
 set to
-    True  : before simulation
+    True  : before simulation; before pushing to github
     False : before generating documentation using sphinx
 """

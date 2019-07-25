@@ -159,12 +159,12 @@ def get_LTE_ratio(_erg, _g, _stage, _Te, _Ne):
             #nRatio[i] = nRatio[i-1] * gj/gi * np.exp(-(erg[i]-erg[i-1])/kT) * Cst.saha_ * Te**(1.5) / Ne
             _nRatio[i] = _nRatio[i-1] * Saha_distribution(_gi, _gj, _erg[i]-_erg[i-1], _Ne, _Te)
 
-    _nRatio[:] /= _nRatio[:].sum()
+        _nRatio[:] /= _nRatio[:].sum()
 
     return _nRatio
 
 
-def EinsteinA2EinsteinBs_hz(Aji, f0, gi, gj):
+def EinsteinA_to_EinsteinBs_hz(Aji, f0, gi, gj):
     r"""
 
     given Einstein A coefficient Aij,
@@ -213,7 +213,7 @@ def EinsteinA2EinsteinBs_hz(Aji, f0, gi, gj):
     return Bji, Bij
 
 
-def EinsteinA2EinsteinBs_cm(Aji, w0, gi, gj):
+def EinsteinA_to_EinsteinBs_cm(Aji, w0, gi, gj):
     r"""
 
     given Einstein A coefficient Aij,
