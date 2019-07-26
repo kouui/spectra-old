@@ -59,7 +59,7 @@ $ python nist_to_level_line.py
 
 ## TODO
 
-- [ ] debug newly added functions in commit [3607eef](https://github.com/kouui/spectra/commit/3607eeff005caae0c659a94344c873fde254e9e5)
+- [X] debug newly added functions in commit [3607eef](https://github.com/kouui/spectra/commit/3607eeff005caae0c659a94344c873fde254e9e5) || finished in commit [852ef87](https://github.com/kouui/spectra/commit/852ef87b443dfcbffbdcd60cd9f2b6be1b3c7618)
 - [ ] convert the (I,J) indexing of AJI and CE to Level indexing : (conf_term_J(lower), conf_term_J(upper)) (combine **spectra** and **AtomicQuery**)
 - [ ] calculate the fitting parameters for collisional excitation/ionization. Because computation using fitting formula is always faster than interpolation, and it is also easier to optmize, e.x. `numba` and so on
 - [ ] try to examine the proposed line pair in Solar-C_EUVST with our code
