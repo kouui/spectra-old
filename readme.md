@@ -12,15 +12,15 @@ if you only want to have a try and reproduce the simulation result in `*.ipynb` 
 7. at last, do not forget to `Save and Checkpoint` and then `Download As` `Notebook (.ipynb)` to your local storage.
 
 
-| ![img](./figures/binder_example.png) |
+| ![img](./fig/binder_example.png) |
 |:---:|
 | Fig 1. steps 1,2,3 |
 
-| ![img](./figures/binder_example1.png) |
+| ![img](./fig/binder_example1.png) |
 |:---:|
 | Fig 2. steps 4,5,6 |
 
-| ![img](./figures/binder_example2.png) |
+| ![img](./fig/binder_example2.png) |
 |:---:|
 | Fig 3. steps 7 |
 
