@@ -87,7 +87,7 @@ def Voigt(a,x):
         F = ( ( A0 + Z * ( A1 + Z * ( A2 + Z * ( A3 + Z * ( A4 + Z * ( A5 + Z * A6 ) ) ) ) ) ) /
              ( B0 + Z * ( B1 + Z * ( B2 + Z * ( B3 + Z * ( B4 + Z * ( B5 + Z * ( B6 + Z ) ) ) ) ) ) ) )
 
-    res = F.real
+    res = F.real / Cst.sqrtPi_
     return res
 
 def Gaussian(x):
@@ -120,6 +120,7 @@ def Gaussian(x):
         Princeton University Press, pp. 203, Eq(8.24), 2015.
     """
     res = np.exp(-x*x) / Cst.sqrtPi_
+
     return res
 
 ################################################################################

@@ -5,6 +5,7 @@
 ################################################################################
 
 import numpy as np
+import numba as nb
 from .. import Constants as Cst
 from ..Structure import AtomCls
 

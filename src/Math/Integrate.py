@@ -6,6 +6,8 @@
 import numpy as np
 import numba as nb
 
+from .. import Constants as Cst
+
 
 ################################################################################
 # integration with using Tapzodial method
@@ -55,4 +57,4 @@ def Trapze(integrand, x):
 ################################################################################
 
 if Cst.isJIT == True:
-    Trapze = nb.jit(nb.float64(nb.float64[:],nb.float64[:]),nopython=True)( Trapze )
+    Trapze = nb.jit([nb.float64(nb.float64[:],nb.float64[:]),nb.int_(nb.int_[:],nb.int_[:])],nopython=True)( Trapze )

@@ -3,7 +3,7 @@
 
 if you only want to have a try and reproduce the simulation result in `*.ipynb` files instead of making some development, go to [https://gke.mybinder.org/](https://gke.mybinder.org/)
 
-1. GitHub repository name or URL : https://github.com/kouui/statistical_equilibrium
+1. GitHub repository name or URL : https://github.com/kouui/spectra
 2. Git branch, tag, or commit : master
 3. click `launch` and wait ~1 minute before the Docker image being built.
 4. move to ./notebooks/ folder, where notebook *.ipynb files are saved.
@@ -59,7 +59,7 @@ $ python nist_to_level_line.py
 
 ## TODO
 
-- [ ] debug newly added functions in commit (3607eef)[https://github.com/kouui/spectra/commit/3607eeff005caae0c659a94344c873fde254e9e5]
+- [ ] debug newly added functions in commit [3607eef](https://github.com/kouui/spectra/commit/3607eeff005caae0c659a94344c873fde254e9e5)
 - [ ] convert the (I,J) indexing of AJI and CE to Level indexing : (conf_term_J(lower), conf_term_J(upper)) (combine **spectra** and **AtomicQuery**)
 - [ ] calculate the fitting parameters for collisional excitation/ionization. Because computation using fitting formula is always faster than interpolation, and it is also easier to optmize, e.x. `numba` and so on
 - [ ] try to examine the proposed line pair in Solar-C_EUVST with our code
