@@ -1,6 +1,8 @@
 import numpy as np
 from .. import Constants as Cst
 
+from scipy.interpolate import splrep, splev
+
 def interpolate_CE_fac(_table, _Te, _Te_table, _f1, _f2):
     r"""
     given temperature, interpolate collisional excitation coefficient
@@ -47,7 +49,11 @@ def interpolate_CE_fac(_table, _Te, _Te_table, _f1, _f2):
     _nTran = _table.shape[0]
     _CE_fac = np.empty(_nTran, dtype=np.double)
     for k in range(_nTran):
-        _CE_fac[k] = np.interp(_Te, _Te_table, _table[k,:]) * _f1[k] / _f2[k]
+        #--- numpy linear interpolation
+        #_CE_fac[k] = np.interp(_Te, _Te_table, _table[k,:]) * _f1[k] / _f2[k]
+        #--- scipy B-spline interpolation
+        _Bsp_obj = splrep(x=_Te_table[:], y=_table[k,:])
+        _CE_fac[k] = splev(_Te, _Bsp_obj, ext=3) * _f1[k] / _f2[k]
 
     return _CE_fac
 

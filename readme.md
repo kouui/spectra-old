@@ -65,3 +65,4 @@ $ python nist_to_level_line.py
 - [ ] try to examine the proposed line pair in Solar-C_EUVST with our code
 - [ ] add functions for calculating collisional ionization/recombination rate coeffcients.
 - [ ] complete the radiative transition rates in calculating SE.
+- [ ] bound-free, free-free opacity, and so on ...
