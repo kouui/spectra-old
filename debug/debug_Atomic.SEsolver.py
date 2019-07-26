@@ -9,8 +9,10 @@ if __name__ == "__main__":
     from src.Atomic import LTELib, ColExcite, SEsolver
     from src.RadiativeTransfer import Thin
 
-    file = "/Users/liu/kouui/workspace/spectra/atom/C_III_Be_like.txt"
-    atom = AtomCls.Atom(file)
+    file     = "../atom/C_III/C_III.Level"
+    file_Aji = "../atom/C_III/Einstein_A/Nist.Aji"
+    file_CEe = "../atom/C_III/Collisional_Excitation/Berrington_et_al_1985.Electron"
+    atom = AtomCls.Atom(file, _file_Aji=file_Aji, _file_CEe=file_CEe)
     Te = 2E+04
     ne = 1E+10
 
@@ -29,7 +31,7 @@ if __name__ == "__main__":
     CE_fac = ColExcite.interpolate_CE_fac(_table=atom.CE_table[:,:], _Te=Te, _Te_table=atom.CE_Te_table[:],
                             _f1=atom.CE_coe.f1[:], _f2=atom.CE_coe.f2[:])
     CEij = ColExcite.get_CE_rate_coe(_CE_fac=CE_fac, _Te=Te, _gi=atom.CE_coe.gi[:],
-                            _dEij=atom.CE_coe.dEij[:], _type=atom.CE_type[0])
+                            _dEij=atom.CE_coe.dEij[:], _type=atom.CE_type)
     CEji = ColExcite.Cij_to_Cji(_Cij=CEij,  _ni_LTE=ni_LTE, _nj_LTE=nj_LTE)
 
     #--- solve SE equations

@@ -3,7 +3,7 @@ from collections import Counter
 from .. import Constants as Cst
 import math
 
-def _prepare_dict(_atom, _conf_duplicate):
+def _prepare_dict(_atom, _conf_prefix):
     r"""
     separate singlet and multiplet
 
@@ -15,7 +15,7 @@ def _prepare_dict(_atom, _conf_duplicate):
     _atom : AtomCls.Atom
         object of the atomic model
 
-    _conf_duplicate : str
+    _conf_prefix : str
         common configuration string of the inner shell
 
     Returns
@@ -28,7 +28,7 @@ def _prepare_dict(_atom, _conf_duplicate):
     _Lset : { "singlet" : {int,}, "multiplet" : {int,} }
         set of Quantum number L in integer for singlet and multiplet, respectively.
     """
-    _L_duplicate = len(_conf_duplicate)
+    _L_prefix = len(_conf_prefix)
 
     #-------------------------------------------------------------------------
     # create and count list of (conf, term)
@@ -40,7 +40,7 @@ def _prepare_dict(_atom, _conf_duplicate):
     #-------------------------------------------------------------------------
     # separate singlet and multiplet
     #-------------------------------------------------------------------------
-    _L_duplicate = len(_conf_duplicate)
+    _L_prefix = len(_conf_prefix)
 
     _singlet = {}
     _multiplet = {}
@@ -52,7 +52,7 @@ def _prepare_dict(_atom, _conf_duplicate):
         # - remove all '.' in conf
         #---------------------------------------------------------------------
         _conf = _atom.Level_info["configuration"][k]
-        _conf_clean = _conf[_L_duplicate:].replace('.','')
+        _conf_clean = _conf[_L_prefix:].replace('.','')
         #---------------------------------------------------------------------
         _term = _atom.Level_info["term"][k]
         _J = _atom.Level_info["J"][k]
@@ -132,7 +132,7 @@ def line_with_text(_ax, _lp, _rp, _text, _tsize, _r, _tangle=0, _lcolor="black",
 
 class Grotrian:
 
-    def __init__(self, _atom, _conf_duplicate):
+    def __init__(self, _atom, _conf_prefix):
         r"""
 
         Parameters
@@ -141,7 +141,7 @@ class Grotrian:
         _atom : AtomCls.Atom
             object of the atomic model
 
-        _conf_duplicate : str
+        _conf_prefix : str
             common configuration string of the inner shell
 
         """
@@ -150,7 +150,7 @@ class Grotrian:
         #---------------------------------------------------------------------
         # prepare structures for plotting
         #---------------------------------------------------------------------
-        singlet, multiplet, Lset = _prepare_dict(_atom=_atom, _conf_duplicate=_conf_duplicate)
+        singlet, multiplet, Lset = _prepare_dict(_atom=_atom, _conf_prefix=_conf_prefix)
         self.singlet = singlet
         self.multiplet = multiplet
         self.Lset = Lset
@@ -268,7 +268,7 @@ class Grotrian:
         #--- x,y label; title
         plt.xlabel("L", fontsize=_fontsize)
         plt.ylabel("E [eV]", fontsize=_fontsize, rotation=90)
-        plt.title(self.atom.title, fontsize=_fontsize, y=0.93)
+        plt.title(self.atom.Title, fontsize=_fontsize, y=1)
 
         #--- change x limit
         plt.xlim(-1, xtick2[-1]+2)
