@@ -55,8 +55,8 @@ if __name__ == "__main__":
     ##)
     #-------------------------------------------------------------------------
     for i, j, wl, _r1, _r2 in line_plot:
-        _cfj1 = atom.Level_info_table[i]
-        _cfj2 = atom.Level_info_table[j]
-        gro.connect_line(_cfj1=_cfj1, _cfj2=_cfj2, _r1=_r1, _r2=_r2, _c="black", _text=wl, _tsize=7, _r=0.4)
+        _ctj1 = atom.Level_info_table[i]
+        _ctj2 = atom.Level_info_table[j]
+        gro.connect_line(_cfj1=_ctj1, _cfj2=_ctj2, _r1=_r1, _r2=_r2, _c="black", _text=wl, _tsize=7, _r=0.4)
     gro.show_fig()
     #gro.save_fig("../grotrian_diagram/" + filename.split('/')[-1].replace(".txt",".png"))
