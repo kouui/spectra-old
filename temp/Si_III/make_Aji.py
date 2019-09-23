@@ -2,10 +2,12 @@
 import pandas as pd
 from read_tables import readAll
 
+
 if __name__ == "__main__":
 
     df = readAll()
     df = df["Aji"]
+
 
     # format output string
     _s_out  = "#   "

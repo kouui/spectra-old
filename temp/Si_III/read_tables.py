@@ -1,6 +1,12 @@
 
 import pandas as pd
 
+def add_dot(s):
+    if len(s) > 3:
+        return s[:2]+"."+s[-2:]
+    else:
+        return s
+
 def readAll():
 
     df = {
@@ -25,6 +31,7 @@ def readAll():
     df["Level"] = pd.read_csv(file, sep=' ', header=0, dtype=dtype, na_values=["-------",], index_col="Index")
 
     add_prefix = lambda x : "1s2.2s2.2p6." + x
+    df["Level"]["Configuration"] = df["Level"]["Configuration"].apply(add_dot)
     df["Level"]["Configuration"] = df["Level"]["Configuration"].apply(add_prefix)
 
     get_term = lambda x : x[:-1]
@@ -78,6 +85,6 @@ if __name__ == "__main__":
     df = readAll()
 
 
-    print(df["CE"].head())
-    print(df["Aji"].head())
-    print(df["Level"].head())
+    #print(df["CE"].head())
+    #print(df["Aji"].head())
+    print(df["Level"].head(n=20))
