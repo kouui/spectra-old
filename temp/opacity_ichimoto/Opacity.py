@@ -7,50 +7,7 @@
 import numpy as np
 
 from .. import Constants as Cst
-
-#import pdb
-
-
-################################################################################
-# Thomson scattering (wavelength independent)
-################################################################################
-
-def Thomson_scattering(n_e):
-    r"""
-    Thomson scattering of free electrons (non-relativistic).
-    Returns absorption coefficient instead of absorption cross section.
-
-    Parameters
-    ----------
-
-    n_e : np.double or array-like
-        electron density, [:math:`cm^{-3}`]
-
-    Returns
-    -------
-
-    kappa : np.double or array-like
-        absorption coefficient, [:math:`cm^{-1}`]
-
-    Notes
-    -----
-
-    .. math:: \kappa = \sigma_{T} n_{e}
-
-    where :math:`\sigma_{T}` is the absorption cross section for Thomson scattering
-    .. math:: \sigma_{T} = \frac{8 \pi e^{4}}{3 m_{e}^{2} c^{4}} = 6.6524 \times 10^{-25} \quad cm^{2}
-
-    References
-    ----------
-
-    .. [1] Ivan Hubeny, Dimitri Mihalas, "Theory of Stellar Atmosphere:
-        An Introduction to Astrophysical Non-equilibrium
-        Quantitative Spectroscopic Analysis",
-        Princeton University Press, pp. 149, 2015.
-    """
-
-    kappa = 6.6524E-25 * n_e
-    return kappa
+import pdb
 
 ################################################################################
 def n_elements(a):
@@ -105,7 +62,7 @@ def Thomson_scattering(n_e):
 def HIbf_CrossSec1(k,wl):
     r"""
     return bound-free cross section of a HI atom in n=k in unit of e-18 cm**2
-
+            
     Parameters
     ----------
     k  : principle quantum number of HI atom
@@ -129,7 +86,7 @@ def HIbf_CrossSec1(k,wl):
     k.ichimoto 19 Feb.1994
     2019.9.15   k.ichimoto from IDL ahic.pro
 """
-
+    
     HIbf_cs_const = {
         1 : (0.9916, 9.068e-3, -0.2524),
         2 : (1.105, -7.922e-2, 4.536e-3),
@@ -145,13 +102,13 @@ def HIbf_CrossSec1(k,wl):
     gbf = HIbf_cs_const[k][0] + (HIbf_cs_const[k][1]+HIbf_cs_const[k][2]*wl3)*wl3
     nwl=len(wl)
     shibf1=np.zeros(nwl)
-
+      
     ii=np.where(wl < wlk)[0]
     if ii.size != 0:
         shibf1[ii] = ak*(wl[ii]/wlk)**3 *gbf[ii]
     if nwl == 1:
         shibf1=shibf1[0]
-
+    
     return shibf1
 
 ################################################################################
@@ -165,7 +122,7 @@ def HIbf_CrossSection(T,wl):
     ----------
     T  : Temperature [K]
     wl : wavelength [A]
-
+    
     Notes
     -----
     HI bound-free opacity in LTE is
@@ -177,15 +134,15 @@ def HIbf_CrossSection(T,wl):
     References
     ----------
     varnazza et al. (1976) ap.j.suppl. vol.30, 1.
-
+    
     Modification history
     --------------------
     2019.9.15  K.Ichimoto  from IDL ahic.pro
 """
-
+    
 #    wl = np.asarray(wl)
 #    T = np.asarray(T)
-
+    
     nwl = n_elements(wl)
     nt = n_elements(T)
     if nwl == 1:
@@ -200,7 +157,7 @@ def HIbf_CrossSection(T,wl):
     xl = 157779.*(1. - 1./l0**2)/T
     u = 2.0;
     a = (1.-np.exp(-1.438787e8/wl/T))/u
-
+    
     if nwl > 1:
         abf = np.zeros(nwl)
         for k in range(1,7):
@@ -231,7 +188,7 @@ def HIff_CrossSection(T,wl):
     ----------
     T  : Temperature [K]
     wl : wavelength [A]
-
+    
     Notes
     -----
     HI free-free opacity in LTE is
@@ -252,22 +209,22 @@ def HIff_CrossSection(T,wl):
     --------------------
     2019.9.15  K.Ichimoto  from IDL ahic.pro
 """
-
+    
     nwl = n_elements(wl)
-    nt = n_elements(T)
+    nt = n_elements(T)   
     if nwl == 1:
         wl = np.atleast_1d(wl)[0]
     if nt == 1:
         T = np.atleast_1d(T)[0]
     if (nwl > 1) and (nt > 1):
         print("both T & wl are array! (HIff_Opacity)")
-#    assert (nwl > 1) and (nt > 1), "both T & wl are array!"
+#    assert (nwl > 1) and (nt > 1), "both T & wl are array!" 
 
     r"""
     ;+/*******************************************************************/
     function ahiff,t,wl
     ;/*******************************************************************/
-    ;  HI free-free absorption coefficient per 1 proton and unit pe (dyne/cm**2)
+    ;  HI free-free absorption coefficient per 1 proton and unit pe (dyne/cm**2) 
         in unit of e-26
     ;  stimulated emission is not corrected
     ;  absorption coeff.:   kff = np*pe*ahiff*(1.-exp(-hv/kt))*1.e-26 (/cm)
@@ -294,7 +251,7 @@ def HIff_CrossSection(T,wl):
     return aff
 
 ################################################################################
-# H-minus (negative hidrogen) CrossSection per HI atom in unit of e-26 cm^2 (*lte*)
+# H-minus (negative hidrogen) CrossSection per HI atom in unit of e-26 cm^2 (*lte*) 
 ################################################################################
 def Hminus_CrossSection(T,wl,n_e):
     r"""
@@ -330,7 +287,7 @@ def Hminus_CrossSection(T,wl,n_e):
 """
 
     nwl = n_elements(wl)
-    nt = n_elements(T)
+    nt = n_elements(T)   
     if nwl == 1:
         wl = np.atleast_1d(wl)[0]
     if nt == 1:
@@ -442,7 +399,7 @@ def avH2p(T,wl):
     2019.9.11  K.Ichimoto  from IDL avh2p.pro
     """
     nwl = n_elements(wl)
-    nT = n_elements(T)
+    nT = n_elements(T)   
     if nwl == 1:
         wl = np.atleast_1d(wl)[0]
     if nT == 1:
@@ -494,7 +451,7 @@ def avH2p(T,wl):
 
     ev = 911.3047/wl
     Tk = 6.3348e-6 * T
-
+      
     n = np.zeros(nwl, dtype=int)
     for i in range(0,nwl):
         #n[i]=min(where(e le ev[i],count))
@@ -512,7 +469,7 @@ def avH2p(T,wl):
         upq=upq[0]
         frq=frq[0]
     avh2p1 = abs( frq * ( np.exp(usq/Tk) - np.exp(-upq/Tk) ) )
-
+     
     if n_elements(avh2p1) == 1:
         avh2p1=avh2p1[0]
 
@@ -540,7 +497,7 @@ def H2p_CrossSection(T,wl,n_e,n_H):
 
     Modification history
     --------------------
-    2019.9.15  K.Ichimoto
+    2019.9.15  K.Ichimoto 
     """
 
     pe = 1.38066e-16 * n_e*T
@@ -550,7 +507,7 @@ def H2p_CrossSection(T,wl,n_e,n_H):
     np  = 1.0/(q+1.0)*n_H
 
     return np*avH2p(T,wl)
-
+    
 ################################################################################
 # LTE continuum opacity in cm-1
 ################################################################################
@@ -589,7 +546,7 @@ def xclte(T,n_H,n_e,wl):
     2019.9.15  K.Ichimoto  from IDL avray.pro
 """
     nwl = n_elements(wl)
-    nT  = n_elements(T)
+    nT  = n_elements(T)   
     nnH = n_elements(n_H)
     nne = n_elements(n_e)
     if nwl == 1:
