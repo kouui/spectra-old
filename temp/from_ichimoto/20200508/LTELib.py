@@ -1,8 +1,6 @@
 ################################################################################
 # this file defines functions for
 #     calculations related to LTE process
-# Modification History:
-#    2020.2.23   k.i.   Ufunc
 ################################################################################
 
 import numpy as np
@@ -10,6 +8,9 @@ import numba as nb
 from .. import Constants as Cst
 from ..Structure import AtomCls
 
+# 2020.2.23   k.i.   Ufunc
+
+################################################################################
 def Boltzmann_distribution(_gi, _gj, _Eji, _Te):
     r"""
 
@@ -58,6 +59,7 @@ def Boltzmann_distribution(_gi, _gj, _Eji, _Te):
 
     return _rt
 
+################################################################################
 def Saha_distribution(_gi, _gk, _chi, _ne, _Te):
     r"""
 
@@ -113,6 +115,7 @@ def Saha_distribution(_gi, _gk, _chi, _ne, _Te):
 
     return _rt
 
+################################################################################
 def get_LTE_ratio(_erg, _g, _stage, _Te, _Ne):
     r"""
     Compute LTE population ratio relative to 1st level.
@@ -166,6 +169,7 @@ def get_LTE_ratio(_erg, _g, _stage, _Te, _Ne):
     return _nRatio
 
 
+################################################################################
 def EinsteinA_to_EinsteinBs_hz(Aji, f0, gi, gj):
     r"""
 
@@ -215,6 +219,7 @@ def EinsteinA_to_EinsteinBs_hz(Aji, f0, gi, gj):
     return Bji, Bij
 
 
+################################################################################
 def EinsteinA_to_EinsteinBs_cm(Aji, w0, gi, gj):
     r"""
 
@@ -260,6 +265,7 @@ def EinsteinA_to_EinsteinBs_cm(Aji, w0, gi, gj):
     return Bji, Bij
 
 
+################################################################################
 def Planck_hz(F,T):
     r"""
     given frequency and temperature,
@@ -309,6 +315,7 @@ def Planck_hz(F,T):
     return intensity
 
 
+################################################################################
 def Planck_cm(W,T):
     r"""
     given wavelength and temperature,
@@ -508,6 +515,8 @@ def Ufunc(elm,T):
     #    ufunc1=ufunc1[0]
 
     return ufunc1
+
+
 
 ################################################################################
 # whether to compile them using numba's LLVM

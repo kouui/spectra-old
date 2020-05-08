@@ -1,11 +1,10 @@
-################################################################################
-#This module defines physics constants and
-#some other constants for the convenience of computation.
-#
-#Modification History:
-#    2020.5.8   k.i.   alp_
-#
-################################################################################
+"""
+This module defines physics constants and
+some other constants for the convenience of computation.
+
+Modification History:
+
+"""
 
 ################################################################################
 # mathematical constants
